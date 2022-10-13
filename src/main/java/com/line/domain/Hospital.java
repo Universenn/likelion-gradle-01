@@ -5,7 +5,8 @@ public class Hospital {
     private String address;
     private String district;
     private String category;
-    private String emergencyRoom;
+
+    private Integer emergencyRoom;
     private String name;
     private String subdivison;
 
@@ -13,36 +14,43 @@ public class Hospital {
         return id;
     }
 
-    public void setId(String id) {
+    public Hospital(String id, String address){
+        this.id = id.replaceAll("\"","");
+        this.address = address.replaceAll("\"","");
+    }
+
+    public Hospital(String id, String address, String category, int emergencyRoom, String name, String subdivision) {
         this.id = id;
-    }
-
-    public void setAddress(String address) {
         this.address = address;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public void setCategory(String category) {
+        String[] splitted = this.address.split(" ");
+        this.district = String.format("%s %s", splitted[0], splitted[1]);
         this.category = category;
-    }
-
-    public void setEmergencyRoom(String emergencyRoom) {
         this.emergencyRoom = emergencyRoom;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public void setSubdivison(String subdivison) {
         this.subdivison = subdivison;
     }
 
-    public Hospital(String id){
-        this.id = id.replaceAll("\"","");
+    public String getAddress() {
+        return address;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSubdivison() {
+        return subdivison;
+    }
+
+    public Integer getEmergencyRoom() {
+        return emergencyRoom;
+    }
 }
